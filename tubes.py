@@ -1,95 +1,37 @@
-while (True):
-            menu=input("Pilih menu: ")
-            if menu == "1":
-                    nama=input("Nama: ")
-                    NIM =input("Nomor NIM: ")
-                    print("Daftar kelas: ")
-                    list_kelas = ["1303", "1304", "1209", "5401", "5402"]
-                    print("1. ", list_kelas[0])
-                    print("2. ", list_kelas[1])
-                    print("3. ", list_kelas[2])
-                    print("4. ", list_kelas[3])
-                    print("5. ", list_kelas[4])
-                    kelass=input("Pilih Kelas: ")
-                    if kelass=="1":
-                        print("Jadwal pemesanan")
-                        tanggal=input("Tanggal pemesanan (hh/bb/tt): ")
-                        print("Daftar jam pemakaian: ")
-                        list_jam = ["07.30 - 09.15", "09.20 - 12.00", "13.00 - 14.45", "14.50 - 16.35"]
-                        print("1. ", list_jam[0])
-                        print("2. ", list_jam[1])
-                        print("3. ", list_jam[2])
-                        print("4. ", list_jam[3])
-                        jam=input("Pilih jam (dalam nomor 1-4 sesuai daftar): ")
-                        if jam not in ['1', '2', '3','4']:
-                            print("Nomor jam tidak valid, mohon inputkan antara 1-4")
-                            break
-                        else:
-                            print("Jadwal berhasil di booking, silahkan lanjut!")
-                    elif kelass=="2":
-                        print("Jadwal pemesanan")
-                        tanggal=input("Tanggal pemesanan (hh/bb/tt): ")
-                        print("Daftar jam pemakaian: ")
-                        list_jam = ["07.30 - 09.15", "09.20 - 12.00", "13.00 - 14.45", "14.50 - 16.35"]
-                        print("1. ", list_jam[0])
-                        print("2. ", list_jam[1])
-                        print("3. ", list_jam[2])
-                        print("4. ", list_jam[3])
-                        jam=input("Pilih jam (dalam nomor 1-4 sesuai daftar): ")
-                        if jam not in ['1', '2', '3','4']:
-                            print("Nomor jam tidak valid, mohon inputkan antara 1-4")
-                            break
-                        else:
-                            print("Jadwal berhasil di booking, silahkan lanjut!")
-                    elif kelass=="3":
-                        print("Jadwal pemesanan")
-                        tanggal=input("Tanggal pemesanan (hh/bb/tt): ")
-                        print("Daftar jam pemakaian: ")
-                        list_jam = ["07.30 - 09.15", "09.20 - 12.00", "13.00 - 14.45", "14.50 - 16.35"]
-                        print("1. ", list_jam[0])
-                        print("2. ", list_jam[1])
-                        print("3. ", list_jam[2])
-                        print("4. ", list_jam[3])
-                        jam=input("Pilih jam (dalam nomor 1-4 sesuai daftar): ")
-                        if jam not in ['1', '2', '3','4']:
-                            print("Nomor jam tidak valid, mohon inputkan antara 1-4")
-                            break
-                        else:
-                            print("Jadwal berhasil di booking, silahkan lanjut!")
-                    elif kelass=="4":
-                        print("Jadwal pemesanan")
-                        tanggal=input("Tanggal pemesanan (hh/bb/tt): ")
-                        print("Daftar jam pemakaian: ")
-                        list_jam = ["07.30 - 09.15", "09.20 - 12.00", "13.00 - 14.45", "14.50 - 16.35"]
-                        print("1. ", list_jam[0])
-                        print("2. ", list_jam[1])
-                        print("3. ", list_jam[2])
-                        print("4. ", list_jam[3])
-                        jam=input("Pilih jam (dalam nomor 1-4 sesuai daftar): ")
-                        if jam not in ['1', '2', '3','4']:
-                            print("Nomor jam tidak valid, mohon inputkan antara 1-4")
-                            break
-                        else:
-                            print("Jadwal berhasil di booking, silahkan lanjut!")
-                    elif kelass=="5":
-                        print("Jadwal pemesanan")
-                        tanggal=input("Tanggal pemesanan (hh/bb/tt): ")
-                        print("Daftar jam pemakaian: ")
-                        list_jam = ["07.30 - 09.15", "09.20 - 12.00", "13.00 - 14.45", "14.50 - 16.35"]
-                        print("1. ", list_jam[0])
-                        print("2. ", list_jam[1])
-                        print("3. ", list_jam[2])
-                        print("4. ", list_jam[3])
-                        jam=input("Pilih jam (dalam nomor 1-4 sesuai daftar): ")
-                        if jam not in ['1', '2', '3','4']:
-                            print("Nomor jam tidak valid, mohon inputkan antara 1-4")
-                            break
-                        else:
-                            print("Jadwal berhasil di booking, silahkan lanjut!")
-                    else:
-                        print("Kelas tidak valid, mohon inputkan kelas 1/2/3/4!")       
-                    print("NIM: ", NIM )
-                    print("Silahkan menggunakan ruang kelas sesuai kelas yang  anda pesan.")
-                    print("Terimakasih atas kepercayaannya, semoga disemogakan..... info kata kata.")
-                    o=input("Apakah anda ingin meencetak bukti peminjaman? (y/n): ")
-                    if o=='y':
+print("Sekertariat Teknik Industri UNS ")
+print("Alamat: Jalan Ir Sutami No 36-A Kentingan Surakarta. Kode Pos, 57126. Telp, (0271) 646994. Fax, (0271) 646655,")
+print("")
+print("Selamat datang di program PINJAMRUANG, Silahkan pilih menu untuk melanjutkan")
+
+import sqlite3
+
+# Fungsi untuk membuat koneksi ke database
+def create_connection():
+    conn = sqlite3.connect('login.db')
+    return conn
+
+# Fungsi untuk membuat tabel login jika belum ada
+def create_table(conn):
+    cursor = conn.cursor()
+    cursor.execute('''CREATE TABLE IF NOT EXISTS login
+                      (username TEXT PRIMARY KEY, password TEXT)''')
+
+# Fungsi untuk membuat akun baru (registrasi)
+def register(conn, username, password):
+    cursor = conn.cursor()
+    cursor.execute("INSERT INTO login (username, password) VALUES (?, ?)", (username, password))
+    conn.commit()
+    print("Registrasi berhasil!")
+
+# Fungsi untuk melakukan login
+def login(conn, username, password):
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM login WHERE username=? AND password=?", (username, password))
+    result = cursor.fetchone()
+    if result:
+        print("Login berhasil!")
+        list_Menu = ["Pemesanan Ruangan", "Panduan Reschedule", "Customer Service"]
+        print("1. ", list_Menu[0])
+        print("2. ", list_Menu[1])
+        print("3. ", list_Menu[2])
+        print("=====================================")
