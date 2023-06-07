@@ -19,7 +19,7 @@ def main():
             password = input("Masukkan password baru: ")
             modul_pengguna.register(username, password)
             print("Pendaftaran berhasil!")
-            pilihan = input("Silakan pilih: 1. Register, 2. Login: ")
+            print("=== LOGIN ===")
             username = input("Masukkan username: ")
             password = input("Masukkan password: ")
 
@@ -27,7 +27,7 @@ def main():
             main()
 
         elif user_choice == "y":
-            print("=== REGISTER ===")
+            print("=== LOGIN ===")
             username = input("Masukkan username: ")
             password = input("Masukkan password: ")
 
