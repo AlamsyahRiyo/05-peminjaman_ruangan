@@ -1,3 +1,7 @@
+from ast import main
+import csv
+import modul_pengguna
+
 def menu():
     print("selamat datang di menu utama")
     list_Menu = ["Pemesanan Ruangan", "Panduan Reschedule", "Customer Service"]
@@ -19,89 +23,200 @@ def menu():
                 print("4. ", list_kelas[3])
                 print("5. ", list_kelas[4])
                 kelass=input("Pilih Kelas: ")
-                if kelass=="1":
-                    print("Jadwal pemesanan")
-                    tanggal=input("Tanggal pemesanan (hh/bb/tt): ")
-                    print("Daftar jam pemakaian: ")
-                    list_jam = ["07.30 - 09.15", "09.20 - 12.00", "13.00 - 14.45", "14.50 - 16.35"]
-                    print("1. ", list_jam[0])
-                    print("2. ", list_jam[1])
-                    print("3. ", list_jam[2])
-                    print("4. ", list_jam[3])
-                    jam=input("Pilih jam (dalam nomor 1-4 sesuai daftar): ")
-                    if jam not in ['1', '2', '3','4']:
-                        print("Nomor jam tidak valid, mohon inputkan antara 1-4")
-                        break
-                    else:
-                        print("Jadwal berhasil di booking, silahkan lanjut!")
+                if kelass == "1":
+                    while True:
+                        print("Jadwal pemesanan")
+                        tanggal = input("Tanggal pemesanan (hh/bb/tttt): ")
+                        try:
+                            tanggal_split = tanggal.split("/")
+                            if len(tanggal_split) != 3:
+                                raise ValueError
+                            hari = int(tanggal_split[0])
+                            bulan = int(tanggal_split[1])
+                            tahun = int(tanggal_split[2])
+                            if len(tanggal_split[0]) != 2 or len(tanggal_split[1]) != 2 or len(tanggal_split[2]) != 4:
+                                 raise ValueError
+                            tanggal_valid = True
+                        except (ValueError, IndexError):
+                            print("Format tanggal tidak sesuai. Harap gunakan format dd/mm/tttt.")
+                            tanggal_valid = False
+
+                        if tanggal_valid:
+                            print("Daftar jam pemakaian: ")
+                            list_jam = ["07.30 - 09.15", "09.20 - 12.00", "13.00 - 14.45", "14.50 - 16.35"]
+                            print("1. ", list_jam[0])
+                            print("2. ", list_jam[1])
+                            print("3. ", list_jam[2])
+                            print("4. ", list_jam[3])
+                            jam=input("Pilih jam (dalam nomor 1-4 sesuai daftar): ")
+                            if jam not in ['1', '2', '3','4']:
+                                print("Nomor jam tidak valid, mohon inputkan antara 1-4")
+                                break
+                            else:
+                                modul_pengguna.simpan_pesanan(nama, NIM, kelass, tanggal, jam)
+                                print("Jadwal berhasil di booking, silahkan lanjut!")
+                            break
+                        else:
+                            continue
+
                 elif kelass=="2":
-                    print("Jadwal pemesanan")
-                    tanggal=input("Tanggal pemesanan (hh/bb/tt): ")
-                    print("Daftar jam pemakaian: ")
-                    list_jam = ["07.30 - 09.15", "09.20 - 12.00", "13.00 - 14.45", "14.50 - 16.35"]
-                    print("1. ", list_jam[0])
-                    print("2. ", list_jam[1])
-                    print("3. ", list_jam[2])
-                    print("4. ", list_jam[3])
-                    jam=input("Pilih jam (dalam nomor 1-4 sesuai daftar): ")
-                    if jam not in ['1', '2', '3','4']:
-                        print("Nomor jam tidak valid, mohon inputkan antara 1-4")
-                        break
-                    else:
-                        print("Jadwal berhasil di booking, silahkan lanjut!")
+                    while True:
+                        print("Jadwal pemesanan")
+                        tanggal = input("Tanggal pemesanan (hh/bb/tttt): ")
+                        try:
+                            tanggal_split = tanggal.split("/")
+                            if len(tanggal_split) != 3:
+                                raise ValueError
+                            hari = int(tanggal_split[0])
+                            bulan = int(tanggal_split[1])
+                            tahun = int(tanggal_split[2])
+                            if len(tanggal_split[0]) != 2 or len(tanggal_split[1]) != 2 or len(tanggal_split[2]) != 4:
+                                 raise ValueError
+                            tanggal_valid = True
+                        except (ValueError, IndexError):
+                            print("Format tanggal tidak sesuai. Harap gunakan format dd/mm/tttt.")
+                            tanggal_valid = False
+
+                        if tanggal_valid:
+                            print("Daftar jam pemakaian: ")
+                            list_jam = ["07.30 - 09.15", "09.20 - 12.00", "13.00 - 14.45", "14.50 - 16.35"]
+                            print("1. ", list_jam[0])
+                            print("2. ", list_jam[1])
+                            print("3. ", list_jam[2])
+                            print("4. ", list_jam[3])
+                            jam=input("Pilih jam (dalam nomor 1-4 sesuai daftar): ")
+                            if jam not in ['1', '2', '3','4']:
+                                print("Nomor jam tidak valid, mohon inputkan antara 1-4")
+                                break
+                            else:
+                                modul_pengguna.simpan_pesanan(nama, NIM, kelass, tanggal, jam)
+                                print("Jadwal berhasil di booking, silahkan lanjut!")
+                            break
+                        else:
+                            continue
+
                 elif kelass=="3":
-                    print("Jadwal pemesanan")
-                    tanggal=input("Tanggal pemesanan (hh/bb/tt): ")
-                    print("Daftar jam pemakaian: ")
-                    list_jam = ["07.30 - 09.15", "09.20 - 12.00", "13.00 - 14.45", "14.50 - 16.35"]
-                    print("1. ", list_jam[0])
-                    print("2. ", list_jam[1])
-                    print("3. ", list_jam[2])
-                    print("4. ", list_jam[3])
-                    jam=input("Pilih jam (dalam nomor 1-4 sesuai daftar): ")
-                    if jam not in ['1', '2', '3','4']:
-                        print("Nomor jam tidak valid, mohon inputkan antara 1-4")
-                        break
-                    else:
-                            print("Jadwal berhasil di booking, silahkan lanjut!")
+                    while True:
+                        print("Jadwal pemesanan")
+                        tanggal = input("Tanggal pemesanan (hh/bb/tttt): ")
+                        try:
+                            tanggal_split = tanggal.split("/")
+                            if len(tanggal_split) != 3:
+                                raise ValueError
+                            hari = int(tanggal_split[0])
+                            bulan = int(tanggal_split[1])
+                            tahun = int(tanggal_split[2])
+                            if len(tanggal_split[0]) != 2 or len(tanggal_split[1]) != 2 or len(tanggal_split[2]) != 4:
+                                 raise ValueError
+                            tanggal_valid = True
+                        except (ValueError, IndexError):
+                            print("Format tanggal tidak sesuai. Harap gunakan format dd/mm/tttt.")
+                            tanggal_valid = False
+
+                        if tanggal_valid:
+                            print("Daftar jam pemakaian: ")
+                            list_jam = ["07.30 - 09.15", "09.20 - 12.00", "13.00 - 14.45", "14.50 - 16.35"]
+                            print("1. ", list_jam[0])
+                            print("2. ", list_jam[1])
+                            print("3. ", list_jam[2])
+                            print("4. ", list_jam[3])
+                            jam=input("Pilih jam (dalam nomor 1-4 sesuai daftar): ")
+                            if jam not in ['1', '2', '3','4']:
+                                print("Nomor jam tidak valid, mohon inputkan antara 1-4")
+                                break
+                            else:
+                                modul_pengguna.simpan_pesanan(nama, NIM, kelass, tanggal, jam)
+                                print("Jadwal berhasil di booking, silahkan lanjut!")
+                            break
+                        else:
+                            continue
                 elif kelass=="4":
-                    print("Jadwal pemesanan")
-                    tanggal=input("Tanggal pemesanan (hh/bb/tt): ")
-                    print("Daftar jam pemakaian: ")
-                    list_jam = ["07.30 - 09.15", "09.20 - 12.00", "13.00 - 14.45", "14.50 - 16.35"]
-                    print("1. ", list_jam[0])
-                    print("2. ", list_jam[1])
-                    print("3. ", list_jam[2])
-                    print("4. ", list_jam[3])
-                    jam=input("Pilih jam (dalam nomor 1-4 sesuai daftar): ")
-                    if jam not in ['1', '2', '3','4']:
-                        print("Nomor jam tidak valid, mohon inputkan antara 1-4")
-                        break
-                    else:
-                        print("Jadwal berhasil di booking, silahkan lanjut!")
+                    while True:
+                        print("Jadwal pemesanan")
+                        tanggal = input("Tanggal pemesanan (hh/bb/tttt): ")
+                        try:
+                            tanggal_split = tanggal.split("/")
+                            if len(tanggal_split) != 3:
+                                raise ValueError
+                            hari = int(tanggal_split[0])
+                            bulan = int(tanggal_split[1])
+                            tahun = int(tanggal_split[2])
+                            if len(tanggal_split[0]) != 2 or len(tanggal_split[1]) != 2 or len(tanggal_split[2]) != 4:
+                                 raise ValueError
+                            tanggal_valid = True
+                        except (ValueError, IndexError):
+                            print("Format tanggal tidak sesuai. Harap gunakan format dd/mm/tttt.")
+                            tanggal_valid = False
+
+                        if tanggal_valid:
+                            print("Daftar jam pemakaian: ")
+                            list_jam = ["07.30 - 09.15", "09.20 - 12.00", "13.00 - 14.45", "14.50 - 16.35"]
+                            print("1. ", list_jam[0])
+                            print("2. ", list_jam[1])
+                            print("3. ", list_jam[2])
+                            print("4. ", list_jam[3])
+                            jam=input("Pilih jam (dalam nomor 1-4 sesuai daftar): ")
+                            if jam not in ['1', '2', '3','4']:
+                                print("Nomor jam tidak valid, mohon inputkan antara 1-4")
+                                break
+                            else:
+                                modul_pengguna.simpan_pesanan(nama, NIM, kelass, tanggal, jam)
+                                print("Jadwal berhasil di booking, silahkan lanjut!")
+                            break
+                        else:
+                            continue
+
                 elif kelass=="5":
-                    print("Jadwal pemesanan")
-                    tanggal=input("Tanggal pemesanan (hh/bb/tt): ")
-                    print("Daftar jam pemakaian: ")
-                    list_jam = ["07.30 - 09.15", "09.20 - 12.00", "13.00 - 14.45", "14.50 - 16.35"]
-                    print("1. ", list_jam[0])
-                    print("2. ", list_jam[1])
-                    print("3. ", list_jam[2])
-                    print("4. ", list_jam[3])
-                    jam=input("Pilih jam (dalam nomor 1-4 sesuai daftar): ")
-                    if jam not in ['1', '2', '3','4']:
-                        print("Nomor jam tidak valid, mohon inputkan antara 1-4")
-                        break
-                    else:
-                        print("Jadwal berhasil di booking, silahkan lanjut!")
+                    while True:
+                        print("Jadwal pemesanan")
+                        tanggal = input("Tanggal pemesanan (hh/bb/tttt): ")
+                        try:
+                            tanggal_split = tanggal.split("/")
+                            if len(tanggal_split) != 3:
+                                raise ValueError
+                            hari = int(tanggal_split[0])
+                            bulan = int(tanggal_split[1])
+                            tahun = int(tanggal_split[2])
+                            if len(tanggal_split[0]) != 2 or len(tanggal_split[1]) != 2 or len(tanggal_split[2]) != 4:
+                                 raise ValueError
+                            tanggal_valid = True
+                        except (ValueError, IndexError):
+                            print("Format tanggal tidak sesuai. Harap gunakan format dd/mm/tttt.")
+                            tanggal_valid = False
+
+                        if tanggal_valid:
+                            print("Daftar jam pemakaian: ")
+                            list_jam = ["07.30 - 09.15", "09.20 - 12.00", "13.00 - 14.45", "14.50 - 16.35"]
+                            print("1. ", list_jam[0])
+                            print("2. ", list_jam[1])
+                            print("3. ", list_jam[2])
+                            print("4. ", list_jam[3])
+                            jam=input("Pilih jam (dalam nomor 1-4 sesuai daftar): ")
+                            if jam not in ['1', '2', '3','4']:
+                                print("Nomor jam tidak valid, mohon inputkan antara 1-4")
+                                break
+                            else:
+                                modul_pengguna.simpan_pesanan(nama, NIM, kelass, tanggal, jam)
+                                print("Jadwal berhasil di booking, silahkan lanjut!")
+                            break
+                        else:
+                            continue
+
                 else:
                     print("Kelas tidak valid, mohon inputkan kelas 1/2/3/4!")       
-                
+                    
                 print("Silahkan menggunakan ruang kelas sesuai kelas yang  anda pesan.")
-                print("Terimakasih atas kepercayaannya, semoga disemogakan..... info kata kata.")
+                print("Terimakasih atas kepercayaan  Anda")
                 o = input("Apakah Anda ingin menghentikan program? (y/n): ")
                 if o=='y':
-                    break
+                    print("PROGAM BERAKHIR")
+                    exit()
+                elif o=='n':
+                    continue
+                else:
+                    print("PROGRAM SELESAI")
+                    
+
         elif menu=="2":
             print("Panduan reschedule ruang kelas:")
             print("1. Isi formulir reschdule disertai keterangan reschecule ruang kelas")
